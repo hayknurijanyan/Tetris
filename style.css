@@ -1,9 +1,22 @@
+audio {
+	outline:none;
+	opacity: 80%;
+	margin-top:20px;
+}
+
 body {
+	    background-image: url(https://i.pinimg.com/originals/f9/40/d1/f940d18318f97e46f13a5d2878fcec49.png);
+        width: 100%;
+        height: 800;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
         align-items: center;
+}
+
+#h3 {
+		color:white;
 }
 
 .grid {
@@ -21,11 +34,12 @@ margin-top: 10px;
 	height: 30px;
 	width:30px;
 	color: black;
+	text-align: center
 
 
 }
 
-.selected {
-	background-color: #e6cf40;
+.figure {
+	background-color: #f2c01b;
 }
 
