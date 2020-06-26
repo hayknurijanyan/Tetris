@@ -6,9 +6,9 @@ audio {
 
 body {
 	background-image: url(./tetris1.jpg);
-	background-size: 70%;
-    width: 100%;
-    height: 700px;
+	background-size: 80%;
+		width: 100%;
+		height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
