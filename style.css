@@ -5,11 +5,11 @@ audio {
 }
 
 body {
-	background-image: url(./tetris1.jpg);
-	background-size: 90%;
-	background-position: center;
-		width: 100%;
-		height: auto;
+    background-image: url(./tetris1.jpg);
+    background-position: center;
+    background-size: 90%;
+    width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +23,7 @@ body {
 
 .grid {
 
-    margin-top: 10px;
+        margin-top: 10px;
 	height: 500px;
 	width: 250px;
 	position: static;
@@ -31,13 +31,14 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	border: 2px solid grey;
 
 
 }
 
 .grid div {
-	height: 25px;
-	width:25px;
+	height: 24.8px;
+	width:24.6px;
 	color: black;
 	text-align: center;
 
