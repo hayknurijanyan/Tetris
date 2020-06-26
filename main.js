@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let squares = Array.from(document.querySelectorAll('.grid div'))
   const scoreDisplay = document.querySelector('#score')
   const startBtn = document.querySelector('#start-button')
+  const header = document.querySelector('#h3')
   let audio = document.getElementsByClassName("myAudio")[0]
+
   
   let nextRandom = 0
   let timerId
@@ -219,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function gameOver() {
     if(current.some(index => squares[currentPosition + index].classList.contains('full'))) {
-      scoreDisplay.innerHTML = 'Game Over'
+      header.innerHTML = 'Game Over'
       clearInterval(timerId)
     }
   }
