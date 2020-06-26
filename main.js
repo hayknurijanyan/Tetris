@@ -4,6 +4,7 @@ const grid = document.querySelector('.grid')
 let squares = Array.from(document.querySelectorAll('.grid div'))
 const scoreDisplay = document.querySelector('#score')
 const startBtn = document.querySelector('#start-button')
+
 const header = document.querySelector('#h3')
 let audio = document.getElementsByClassName("myAudio")[0]
 
@@ -187,6 +188,7 @@ function checkRotatedPosition(P){
     if (timerId) {
       clearInterval(timerId)
       timerId = null
+      audio.pause()
     } else {
       draw()
       timerId = setInterval(moveDown, 1000)
