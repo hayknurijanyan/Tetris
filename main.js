@@ -1,45 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  const grid = document.querySelector('.grid')
-  let squares = Array.from(document.querySelectorAll('.grid div'))
-  const scoreDisplay = document.querySelector('#score')
-  const startBtn = document.querySelector('#start-button')
-  const header = document.querySelector('#h3')
-  let audio = document.getElementsByClassName("myAudio")[0]
+const grid = document.querySelector('.grid')
+let squares = Array.from(document.querySelectorAll('.grid div'))
+const scoreDisplay = document.querySelector('#score')
+const startBtn = document.querySelector('#start-button')
+const header = document.querySelector('#h3')
+let audio = document.getElementsByClassName("myAudio")[0]
 
   
-  let nextRandom = 0
-  let timerId
-  let score = 0
-  const colors = [
-    '#d70f37',
-    '#109bd7',
-    '#ffc729',
-    '#c528a6',
-    '#83d718'
-  ]
+let nextRandom = 0
+let timerId
+let score = 0
+const colors = [
+  '#d70f37',
+  '#109bd7',
+  '#ffc729',
+  '#c528a6',
+  '#83d718'
+]
 
 
-  const figure0 = [
+const figure0 = [
       [1, 11, 21, 2],
       [10, 11, 12, 22],
       [1, 11, 21, 20],
       [10, 20, 21, 22]
-    ]
+  ]
   
-  const figure1 = [
+const figure1 = [
       [0,10,11,21],
       [11,12,20,21],
       [0,10,11,21],
       [11,12,20,21]
-    ]
+  ]
   
-  const figure2 = [
+ const figure2 = [
       [1,10,11,12],
       [1,11,12,21],
       [10,11,12,21],
       [1,10,11,21]
-    ]
+  ]
    const figure3 = [
       [0,1,10,11],
       [0,1,10,11],
@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   
   
-  const allFigures = [figure0, figure1, figure2, figure3, figure4]
+const allFigures = [figure0, figure1, figure2, figure3, figure4]
 
-  let currentPosition = 4
-  let currentRotation = 0
+let currentPosition = 4
+let currentRotation = 0
 
   console.log(allFigures[0][0])
 
@@ -97,11 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keyup', control)
 
   function playAudio() {
-    audio.play();
+      audio.play()
 }
 
-
-  function moveDown() {
+function moveDown() {
     undraw()
     currentPosition += 10
     draw()
@@ -109,8 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  function freeze() {
-    if(current.some(index => squares[currentPosition + index + 10].classList.contains('full'))) {
+function freeze() {
+   if(current.some(index => squares[currentPosition + index + 10].classList.contains('full'))) {
       current.forEach(index => squares[currentPosition + index].classList.add('full'))
       //start a new tetromino falling
       random = nextRandom
@@ -120,22 +119,22 @@ document.addEventListener('DOMContentLoaded', () => {
       draw()
       addScore()
       gameOver()
-    }
-  }
+ }
+}
 
 
-  function moveLeft() {
+function moveLeft() {
     undraw()
     const isAtLeftEdge = current.some(index => (currentPosition + index) % 10 === 0)
     if(!isAtLeftEdge) currentPosition -=1
     if(current.some(index => squares[currentPosition + index].classList.contains('full'))) {
       currentPosition +=1
-    }
+   }
     draw()
-  }
+}
 
 
-  function moveRight() {
+function moveRight() {
     undraw()
     const isAtRightEdge = current.some(index => (currentPosition + index) % 10 === 10 -1)
     if(!isAtRightEdge) currentPosition +=1
@@ -143,25 +142,25 @@ document.addEventListener('DOMContentLoaded', () => {
       currentPosition -=1
     }
     draw()
-  }
+}
 
 
-  function isAtRight() {
+function isAtRight() {
     return current.some(index=> (currentPosition + index + 1) % 10 === 0)  
-  }
+}
   
-  function isAtLeft() {
+function isAtLeft() {
     return current.some(index=> (currentPosition + index) % 10 === 0)
-  }
+ }
   
-  function checkRotatedPosition(P){
+function checkRotatedPosition(P){
     P = P || currentPosition    
     if ((P+1) % 10 < 4) {       
       if (isAtRight()){         
         currentPosition += 1  
         checkRotatedPosition(P) 
-        }
-    }
+      }
+  }
     else if (P % 10 > 5) {
       if (isAtLeft()){
         currentPosition -= 1
@@ -183,9 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
-
-
   startBtn.addEventListener('click', () => {
     playAudio() 
     if (timerId) {
@@ -200,11 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
-  function addScore() {
-    for (let i = 0; i < 199; i +=10) {
-      const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
+function addScore() {
+  for (let i = 0; i < 199; i +=10) {
+    const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
 
-      if(row.every(index => squares[index].classList.contains('full'))) {
+    if(row.every(index => squares[index].classList.contains('full'))) {
         score +=10
         scoreDisplay.innerHTML = score
         row.forEach(index => {
@@ -215,14 +211,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const squaresRemoved = squares.splice(i, 10)
         squares = squaresRemoved.concat(squares)
         squares.forEach(cell => grid.appendChild(cell))
-      }
     }
   }
+}
 
-  function gameOver() {
-    if(current.some(index => squares[currentPosition + index].classList.contains('full'))) {
-      header.innerHTML = 'Game Over'
-      clearInterval(timerId)
+function gameOver() {
+  if(current.some(index => squares[currentPosition + index].classList.contains('full'))) {
+     header.innerHTML = 'Game Over'
+    clearInterval(timerId)
     }
   }
 
